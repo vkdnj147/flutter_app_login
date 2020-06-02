@@ -15,3 +15,7 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 # flutter_app_login
+
+
+# 간단한 로그인 화면과 홈화면 제작
+# bloc 패턴을 사용하여 
