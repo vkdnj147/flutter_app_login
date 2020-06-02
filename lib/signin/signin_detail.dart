@@ -29,7 +29,12 @@ class _SigninDetailState extends State<SigninDetail> {
   bool isLoginButtonEnabled() {
     return isPopulated;
   }
-
+  /*
+  BlocBuilder 위젯을 사용하여 새로운 LoginState가있을 때마다 다시 빌드 할 수 있습니다.
+BlocBuilder는 Bloc과 빌더 기능이 필요한 Flutter 위젯입니다.
+BlocBuilder는 새로운 상태에 대한 응답으로 위젯 빌드를 처리합니다.
+BlocBuilder는 StreamBuilder와 매우 유사하지만 필요한 상용구 코드의 양을 줄이기 위해 더 간단한 API가 있습니다.
+   */
   @override
   Widget build(BuildContext context) {
     return BlocListener<SigninBloc, SigninState>(

@@ -11,7 +11,12 @@ class SigninState {
     @required this.isSuccess,
     @required this.isFailure,
   });
-
+/*
+LoginInitial은 LoginForm의 초기 상태입니다.
+LoginLoading은 자격 증명을 확인할 때 LoginForm의 상태입니다.
+LoginFailure는 로그인 시도가 실패한 경우 LoginForm의 상태입니다.
+LoginState가 정의되었으므로 LoginEvent 클래스를 살펴 보겠습니다.
+ */
   factory SigninState.empty() {
     return SigninState(
       isSubmitting: false,

@@ -8,3 +8,8 @@ class SplashScreen extends StatelessWidget {
     );
   }
 }
+
+
+/*
+  가장 먼저 필요한 것은 SplashPage 위젯으로 스플래시 화면 역할을하며 블록은 사용자의 로그인 여부를 결정합니다.
+ */
