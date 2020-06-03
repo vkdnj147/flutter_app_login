@@ -25,14 +25,14 @@ class AuthenticationBloc
         _userRepository = userRepository;
 
   @override
-  AuthenticationState get initialState => Uninitialized();
+  AuthenticationState get initialState => AuthenticationState.uninitialized();
+
 
   /*
   앱의 가장 먼저해야 할 일은 사용자의 로그인 여부를 결정하기 때문에
   블록의 initialState는 AuthenticationUninitialized로 설정됩니다.
 mapEventToState는 블록이 들어오는 이벤트를 프리젠 테이션 레이어가 사용하는 상태로 변환하는 곳입니다.
    */
-
 
   @override
   Stream<AuthenticationState> mapEventToState(
@@ -51,21 +51,21 @@ mapEventToState는 블록이 들어오는 이벤트를 프리젠 테이션 레�
     try {
       final isSignedIn = await _userRepository.isSignedIn();
       if (isSignedIn) {
-        yield Authenticated();
+        yield AuthenticationState.authenticated();
       } else {
-        yield Unauthenticated();
+        yield AuthenticationState.unauthenticated();
       }
     } catch (_) {
-      yield Unauthenticated();
+      yield AuthenticationState.unauthenticated();
     }
   }
 
   Stream<AuthenticationState> _mapLoggedInToState() async* {
-    yield Authenticated();
+    yield AuthenticationState.authenticated();
   }
 
   Stream<AuthenticationState> _mapLoggedOutToState() async* {
-    yield Unauthenticated();
+    yield AuthenticationState.unauthenticated();
     _userRepository.signOut();
   }
 

@@ -1,22 +1,24 @@
-import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 
-abstract class AuthenticationState extends Equatable {
-  const AuthenticationState();
+@immutable
+class AuthenticationState {
+  final bool isAuth;
+  final bool isInit;
+  final String username;
 
-  @override
-  List<Object> get props => [];
-}
+  AuthenticationState({
+    @required this.isAuth,
+    @required this.isInit,
+    @required this.username,
+  });
 
-class Uninitialized extends AuthenticationState {}
-
-class Authenticated extends AuthenticationState {
-  @override
-  String toString() => 'Authenticated';
-}
-
-class Unauthenticated extends AuthenticationState {}
-
-
+  factory AuthenticationState.uninitialized() {
+    return AuthenticationState(
+      isAuth: false,
+      isInit: false,
+      username: null,
+    );
+  }
 
 /*
 uninitialized — 앱이 시작될 때 사용자가 인증되었는지 여부를 기다리는 중입니다.
@@ -35,3 +37,54 @@ unauthenticated — 인증되지 않음
 
 AuthenticationState를 정의 했으므로 블록이 반응 할 AuthenticationEvents를 정의해야합니다.
  */
+
+  factory AuthenticationState.unauthenticated() {
+    return AuthenticationState(
+      isAuth: true,
+      isInit: false,
+      username: null,
+    );
+  }
+
+  factory AuthenticationState.authenticated() {
+    return AuthenticationState(
+      isAuth: true,
+      isInit: true,
+      username: null,
+    );
+  }
+
+  AuthenticationState update({
+    bool isAuthSuccess,
+    bool isInit,
+    String username,
+  }) {
+    return copyWith(
+      isAuth: false,
+      isInit: false,
+      username: username,
+    );
+  }
+
+  AuthenticationState copyWith({
+    bool isAuth,
+    bool isInit,
+    String username,
+  }) {
+    return AuthenticationState(
+      isAuth: isAuth ?? this.isAuth,
+      isInit: isInit ?? this.isInit,
+      username: username ?? this.username,
+    );
+  }
+
+  @override
+  String toString() {
+    return '''AuthenticationState {
+      isAuth: $isAuth,
+      isInit: $isInit,
+      username: $username,
+      
+    }''';
+  }
+}
