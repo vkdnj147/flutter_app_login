@@ -62,13 +62,13 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.white,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Image(
-              image: AssetImage('assets/images/icons/navi-home-off.png'),
-              width: 28,
+            icon: FaIcon(
+              FontAwesomeIcons.home,
+              size: 25.0,
             ),
-            activeIcon: Image(
-              image: AssetImage('assets/images/icons/navi-home-on.png'),
-              width: 28,
+            activeIcon: FaIcon(
+              FontAwesomeIcons.home,
+              size: 25.0,
             ),
             title: Padding(padding: EdgeInsets.all(0)),
           ),
@@ -84,24 +84,24 @@ class _HomeScreenState extends State<HomeScreen> {
             title: Padding(padding: EdgeInsets.all(0)),
           ),
           BottomNavigationBarItem(
-            icon: Image(
-              image: AssetImage('assets/images/icons/navi-mypage-off.png'),
-              width: 27,
+            icon: FaIcon(
+              FontAwesomeIcons.idCard,
+              size: 25.0,
             ),
-            activeIcon: Image(
-              image: AssetImage('assets/images/icons/navi-mypage-on.png'),
-              width: 27,
+            activeIcon: FaIcon(
+              FontAwesomeIcons.idCard,
+              size: 25.0,
             ),
             title: Padding(padding: EdgeInsets.all(0)),
           ),
           BottomNavigationBarItem(
-            icon: Image(
-              image: AssetImage('assets/images/icons/navi-alarm-off.png'),
-              width: 28,
+            icon: FaIcon(
+              FontAwesomeIcons.bell,
+              size: 25.0,
             ),
-            activeIcon: Image(
-              image: AssetImage('assets/images/icons/navi-alarm-on.png'),
-              width: 28,
+            activeIcon: FaIcon(
+              FontAwesomeIcons.bell,
+              size: 25.0,
             ),
             title: Padding(padding: EdgeInsets.all(0)),
           ),
