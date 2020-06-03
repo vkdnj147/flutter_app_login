@@ -1,41 +1,119 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kicksonapp/authentication_bloc/authentication_bloc.dart';
 import 'package:kicksonapp/authentication_bloc/bloc.dart';
+import 'package:kicksonapp/signin/signin_screen.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({Key key}) : super(key: key);
+import 'bloc/home_bloc.dart';
+import 'home_main.dart';
+
+class HomeScreen extends StatefulWidget {
+  final int _index;
+
+  HomeScreen({Key key, int index})
+      : _index = index,
+        super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int get _index => widget._index;
+  int _selectedIndex = 0;
+  AuthenticationBloc _authenticationBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = _index != null && _index > 0 ? _index : 0;
+    _authenticationBloc = BlocProvider.of<AuthenticationBloc>(context);
+  }
+
+  void _onItemTapped(int index) {
+//    debugPrint("]-----] index [-----[ $index");
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> _children = [
+      HomeMain(),
+      HomeMain(),
+      SigninScreen(),
+      HomeMain(),
+
+//      MessageScreen(),
+    ];
     return Scaffold(
-      appBar: AppBar(
-        title: Text('KICKSON'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.exit_to_app),
-            onPressed: () {
-              BlocProvider.of<AuthenticationBloc>(context).add(
-                LoggedOut(),
-              );
-            },
-          )
-        ],
+      backgroundColor: Colors.white,
+      body: BlocProvider<HomeBloc>(
+        create: (context) => HomeBloc(
+            authenticationBloc: BlocProvider.of<AuthenticationBloc>(context)),
+        child: _children[_selectedIndex],
       ),
-      body: GridView.count(
-        // Create a grid with 2 columns. If you change the scrollDirection to
-        // horizontal, this produces 2 rows.
-        crossAxisCount: 2,
-        // Generate 100 widgets that display their index in the List.
-        children: List.generate(100, (index) {
-          return Center(
-              child: Container(
-            child: Image(
-                image: AssetImage('assets/images/dump/1@3x.png'), width: 150,height: 150),
-//                child: Text('Item $index',
-//                    style: Theme.of(context).textTheme.headline5, textAlign: TextAlign.center) ,
-          ));
-        }),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+
+//        elevation: 25,
+        backgroundColor: Colors.white,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Image(
+              image: AssetImage('assets/images/icons/navi-home-off.png'),
+              width: 28,
+            ),
+            activeIcon: Image(
+              image: AssetImage('assets/images/icons/navi-home-on.png'),
+              width: 28,
+            ),
+            title: Padding(padding: EdgeInsets.all(0)),
+          ),
+          BottomNavigationBarItem(
+            icon: FaIcon(
+              FontAwesomeIcons.instagram,
+              size: 30.0,
+            ),
+            activeIcon: FaIcon(
+              FontAwesomeIcons.instagram,
+              size: 30.0,
+            ),
+            title: Padding(padding: EdgeInsets.all(0)),
+          ),
+          BottomNavigationBarItem(
+            icon: Image(
+              image: AssetImage('assets/images/icons/navi-mypage-off.png'),
+              width: 27,
+            ),
+            activeIcon: Image(
+              image: AssetImage('assets/images/icons/navi-mypage-on.png'),
+              width: 27,
+            ),
+            title: Padding(padding: EdgeInsets.all(0)),
+          ),
+          BottomNavigationBarItem(
+            icon: Image(
+              image: AssetImage('assets/images/icons/navi-alarm-off.png'),
+              width: 28,
+            ),
+            activeIcon: Image(
+              image: AssetImage('assets/images/icons/navi-alarm-on.png'),
+              width: 28,
+            ),
+            title: Padding(padding: EdgeInsets.all(0)),
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Theme.of(context).primaryColor,
+        unselectedItemColor: Color.fromRGBO(155, 155, 155, 1),
+        onTap: _onItemTapped,
+        unselectedFontSize: 13,
+        selectedFontSize: 13,
+        selectedLabelStyle:
+        TextStyle(fontFamily: "NotoSansCJKkr-Medium", fontSize: 13),
       ),
     );
   }

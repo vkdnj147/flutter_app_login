@@ -46,18 +46,13 @@ void main() {
 
 class App extends StatelessWidget {
   App({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {
-          if (state is Unauthenticated) {
-            return SigninScreen();
-          }
-          if (state is Authenticated) {
-            return HomeScreen();
-          }
-          return SplashScreen();
+          return HomeScreen();
         },
       ),
     );
