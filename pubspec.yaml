@@ -86,7 +86,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/dump/
-    - assets/images/icons/
+
   fonts:
     - family: icomoon
       fonts:

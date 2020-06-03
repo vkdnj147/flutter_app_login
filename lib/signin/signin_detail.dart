@@ -457,7 +457,7 @@ BlocBuilder는 StreamBuilder와 매우 유사하지만 필요한 상용구 코�
                                                     children: <Widget>[
                                                       Image(
                                                           image: AssetImage(
-                                                              'assets/images/kakao@3x.png'),
+                                                              'assets/images/dump/kakao@3x.png'),
                                                           width: 24),
                                                       Text(
                                                         "KAKAOTALK",
@@ -514,7 +514,7 @@ BlocBuilder는 StreamBuilder와 매우 유사하지만 필요한 상용구 코�
                                                     children: <Widget>[
                                                       Image(
                                                           image: AssetImage(
-                                                              'assets/images/images.png'),
+                                                              'assets/images/dump/images.png'),
                                                           width: 24),
                                                       Text(
                                                         "APPLE",
