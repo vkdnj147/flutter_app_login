@@ -32,18 +32,31 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _onItemTapped(int index) {
-//    debugPrint("]-----] index [-----[ $index");
+    debugPrint("]-----] index [-----[ $index");
+
     setState(() {
       _selectedIndex = index;
+
+      if (_selectedIndex == 2) {
+        _showDialog();
+      }
     });
   }
-
+  void _showDialog() {
+    // flutter defined function
+    if (_selectedIndex == 2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => SigninScreen()),
+      );
+    }
+  }
   @override
   Widget build(BuildContext context) {
     final List<Widget> _children = [
       HomeMain(),
       HomeMain(),
-      SigninScreen(),
+      HomeMain(),
       HomeMain(),
 
 //      MessageScreen(),
@@ -107,13 +120,14 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
         currentIndex: _selectedIndex,
+
         selectedItemColor: Theme.of(context).primaryColor,
         unselectedItemColor: Color.fromRGBO(155, 155, 155, 1),
         onTap: _onItemTapped,
         unselectedFontSize: 13,
         selectedFontSize: 13,
         selectedLabelStyle:
-        TextStyle(fontFamily: "NotoSansCJKkr-Medium", fontSize: 13),
+            TextStyle(fontFamily: "NotoSansCJKkr-Medium", fontSize: 13),
       ),
     );
   }
