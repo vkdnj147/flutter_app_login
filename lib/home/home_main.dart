@@ -2,10 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kicksonapp/authentication_bloc/authentication_bloc.dart';
 import 'package:kicksonapp/authentication_bloc/bloc.dart';
+import 'package:kicksonapp/home/bloc/bloc.dart';
 
-class HomeMain extends StatelessWidget {
+class HomeMain extends StatefulWidget {
   HomeMain({Key key}) : super(key: key);
 
+  @override
+  _HomeMainState createState() => _HomeMainState();
+}
+
+class _HomeMainState extends State<HomeMain> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
